@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.ahut.dao.UserDao">
+
+    <update id="resetPassword" parameterType="java.lang.String">
+        update t_user
+        set upassword=#{upassword}
+        where uid=#{uid}
+    </update>
+
+    <update id="updateInfo" parameterType="com.ahut.model.User">
+        update t_user
+        set
+            ustatus=#{ustatus},
+            uemail=#{uemail},
+            utelephone=#{utelephone}
+        where uid=#{uid}
+    </update>
+
+    <insert id="identify" parameterType="com.ahut.model.StudentIdentify">
+        insert into t_studentidentify
+        (collegename,studentid,front,opposite,id)
+        values
+        (#{collegename},#{studentid},#{front},#{opposite},#{id})
+    </insert>
+
+    <select id="getIdentify" parameterType="java.lang.String" resultType="com.ahut.model.StudentIdentify">
+        select * from t_studentidentify where id=#{id}
+    </select>
+
+</mapper>

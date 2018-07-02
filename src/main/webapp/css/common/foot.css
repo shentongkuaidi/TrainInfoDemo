@@ -1,0 +1,21 @@
+/*foot*/
+#foot{
+	text-align:center;
+	line-height:30px;
+	padding:50px 0 0 0;
+	border-top:1px solid #e7e7e7;
+	width:100%;
+	height: 150px;
+	background-color:#CCCCCC;
+	color:#666666;
+}
+#foot a{
+	text-decoration:none;
+	color:#666666;
+}
+#foot a:hover{
+	text-decoration:underline;
+}
+#foot span{
+	margin:0 10px 0 10px;
+}

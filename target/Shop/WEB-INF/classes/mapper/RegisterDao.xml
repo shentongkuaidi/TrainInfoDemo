@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahut.dao.RegisterDao">
+
+    <insert id="saveCode" parameterType="com.ahut.model.Code">
+        insert into t_code
+        (
+        cway,
+        ccode,
+        ctime
+        )
+        values
+        (
+        #{cway},
+        #{ccode},
+        #{ctime}
+        )
+    </insert>
+
+    <insert id="saveUser" parameterType="com.ahut.model.User">
+        insert into t_user
+        (
+        uid,
+        upassword,
+        uname,
+        usex,
+        unumber,
+        utelephone,
+        ustatus,
+        uemail,
+        upower
+        )
+        values
+        (
+        #{uid},
+        #{upassword},
+        #{uname},
+        #{usex},
+        #{unumber},
+        #{utelephone},
+        #{ustatus},
+        #{uemail},
+        #{upower}
+        )
+    </insert>
+
+    <select id="queryConfirm" parameterType="java.lang.String" resultType="com.ahut.model.User">
+        select *
+        from t_user
+        <where>
+            <if test="uid !=null">
+                and uid=#{uid}
+            </if>
+            <if test="utelephone != null">
+                and utelephone=#{utelephone}
+            </if>
+            <if test="uemail != null">
+                and uemail=#{uemail}
+            </if>
+        </where>
+    </select>
+
+    <select id="updateInfoConfirm" parameterType="java.lang.String" resultType="com.ahut.model.User">
+        select *
+        from t_user
+        where uid != #{uid}
+            <if test="utelephone != null">
+                and utelephone=#{utelephone}
+            </if>
+            <if test="uemail != null">
+                and uemail=#{uemail}
+            </if>
+    </select>
+
+    <select id="queryCode" parameterType="java.lang.String" resultType="java.lang.String">
+        select ccode
+        from t_code
+        where cway=#{cway}
+        order by cid desc
+        limit 0,1
+    </select>
+
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahut.dao.EmailDao">
+
+    <insert id="save" parameterType="com.ahut.model.Email">
+        insert into t_email
+        (
+        eemail,
+        etitle,
+        econtent,
+        etime
+        )
+        values
+        (
+        #{eemail},
+        #{etitle},
+        #{econtent},
+        #{etime}
+        )
+    </insert>
+
+</mapper>

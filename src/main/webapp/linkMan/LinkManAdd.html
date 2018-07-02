@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>添加联系人</title>
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../css/common/top.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/common/foot.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/common/UserInfoLeft.css" rel="stylesheet" type="text/css"/>
+    <link href="css/LinkManAdd.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/linkManAdd.js"></script>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <!--头部开始-->
+    <div id="top">
+        <div class="span2" id="logo">
+            <a><img src="../img/logo.jpg" style="width: 270px;height: 50px" border="0"/></a>
+        </div>
+        <div class="span2" id="exit">
+            <a href="/exit">[退 出]</a>
+        </div>
+        <div class="span5">
+        </div>
+        <div class="span3" id="tel">
+            <img src="../img/tel.jpg" style="width: 170px;height: 50px"/>
+        </div>
+    </div>
+    <!--头部结束-->
+
+    <div class="clear"></div>
+
+    <div class="span12">
+        <!--导航开始-->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="nav-collapse collapse navbar-responsive-collapse" id="Navigation">
+                    <ul class="nav">
+                        <li>
+                            <a href="../index.html">客运首页</a>
+                        </li>
+                        <li>
+                            <a href="../booking/SearchTicket.html">车票预定</a>
+                        </li>
+                        <li>
+                            <a href="../booking/TurnTicket1.html">接续换乘</a>
+                        </li>
+                        <li>
+                            <a href="../guide/guide.html">出行向导</a>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li class="divider-vertical">
+                        </li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">个人中心<strong
+                                    class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../userInfo/OrderContinue.html">未完成订单</a>
+                                </li>
+                                <li>
+                                    <a href="../userInfo/OrderFinish.html">已完成订单</a>
+                                </li>
+                                <li>
+                                    <a href="../userInfo/PersonalInfo.html">查看个人信息</a>
+                                </li>
+                                <li>
+                                    <a href="../userInfo/StudentIdentify.html">学生证认证</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="LinkManList.html">常用联系人</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!--导航结束-->
+    </div>
+
+
+    <div class="span12">
+        <!--左侧-->
+        <div id="Left" class="span4">
+            <!--个人中心-->
+            <div class="personalCenter">
+                <div class="personalCenter-title">
+                    <h5>个人中心</h5>
+                </div>
+                <div class="personalCenter-content">
+                    <p class="userName" id="userName"></p>
+                    <p><a href="../userInfo/PersonalInfo.html"><font size="2.5px">基本资料</font></a></p>
+                    <p><a href="../userInfo/ModifyPassword.html"><font size="2.5px">密码修改</font></a></p>
+                </div>
+            </div>
+            <!--个人中心结束-->
+
+            <!--用户功能权限-->
+            <div class="userFunction">
+                <ul class="nav nav-pills nav-tabs nav-stacked">
+                    <li><a href="../userInfo/OrderContinue.html"><img src="../img/user/MyFavorites.png" width="20"
+                                                                      height="20" border="0">未完成订单</a></li>
+
+                    <li><a href="../userInfo/OrderFinish.html"><img src="../img/user/BrowseHistory.png"
+                                                                    width="20" height="20"
+                                                                    border="0">已完成订单</a></li>
+                    <li><a href="../userInfo/StudentIdentify.html"><img src="../img/user/Subscription.png" width="20"
+                                                                        height="20" border="0">学生证认证</a></li>
+                </ul>
+            </div>
+            <!--用户功能权限结束-->
+
+            <!--常用联系人-->
+            <div class="MortgageCalculator">
+                <ul class="nav nav-pills nav-tabs nav-stacked">
+                    <li><a href="LinkManList.html" class="linkMan"><img src="../img/user/ReleaseSale.png" width="20"
+                                                                        height="20" border="0">常用联系人</a></li>
+                    <li><a href="#"><img src="../img/user/Released.png" width="20"
+                                         height="20" border="0">餐饮，特产</a></li>
+                </ul>
+            </div>
+            <!--常用联系人-->
+
+        </div>
+        <!--左侧结束-->
+
+        <!--右侧-->
+        <div id="Right" class="span8">
+            <div class="linkManAdd-title">
+                <h4>常用联系人 >>>增加</h4>
+            </div>
+
+            <!--添加联系人开始-->
+            <div class="span6" id="linkManAdd">
+                <table>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="lname"><span
+                                class="Required">*</span>真实姓名：</label></td>
+                        <td><input type="text" id="lname"></td>
+                        <td><span class="help-inline" id="lnamedo"></span></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="lsex"><span
+                                class="Required">*</span>性别：</label></td>
+                        <td>
+                            <select id="lsex">
+                                <option value="您是先生还是女士？">您是先生还是女士？</option>
+                                <option value="先生">先生</option>
+                                <option value="女士">女士</option>
+                            </select>
+                        </td>
+                        <td><span class="help-inline" id="lsexdo"></span></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="ltype"><span
+                                class="Required">*</span>身份：</label>
+                        </td>
+                        <td>
+                            <select id="ltype">
+                                <option value="请选择您的身份">请选择您的身份</option>
+                                <option value="成人">成人</option>
+                                <option value="学生">学生</option>
+                            </select>
+                        </td>
+                        <td><span class="help-inline" id="ltypedo"></span></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="lnumber"><span class="Required">*</span>身份证号码：</label>
+                        </td>
+                        <td><input type="text" id="lnumber"></td>
+                        <td><span class="help-inline" id="lnumberdo"></span></td>
+                        <td></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td></td>
+                        <td>
+                            <button class="btn btn-info" type="button" id="save">✔ 保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-info" type="button" id="cancel">↩ 取消,返回</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <!--添加联系人结束-->
+
+        </div>
+        <!--右侧结束-->
+    </div>
+
+</div>
+
+
+<div class="clear"></div>
+
+
+<!--foot-->
+<div id="foot">
+    <a href="#">关于我们 |</a>
+    <a href="#">友情链接 |</a>
+    <a href="../user/UserAgreement.html" target="_blank">用户协议 |</a>
+    <a href="#">手机客户端 |</a>
+    <a href="#">加入收藏</a>
+    <p><span>客服热线：18395588030</span><span>邮箱：993047454@qq.com</span><span>地址：安徽省马鞍山市安徽工业大学</span></p>
+    <p>Copyright @ 2018 www.ticketOnline.com All Rights Reserved.</p>
+
+</div>
+<!--foot结束-->
+
+
+</body>
+</html>

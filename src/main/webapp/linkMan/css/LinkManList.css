@@ -1,0 +1,78 @@
+#Right{
+	width:700px;
+	float:right;
+	height: 336px;
+	margin:0 0 20px 0;
+	padding:20px;
+	border-radius: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	background-color:#FFFFFF;
+	box-shadow:5px 5px 7px #999;
+	-webkit-box-shadow:5px 5px 7px #999;
+	-moz-box-shadow:5px 5px 7px #999;
+}
+
+.linkMan-title h4{
+	color:#87ceeb;
+	margin:0 0 10px 0;
+}
+.linkMan-title{
+	width:700px;
+	border-bottom:2px solid #87ceeb;
+}
+.span12{
+	width:960px;
+}
+
+/*�����޸Ŀ�ʼ*/
+.linkMan{
+	background-color:#87ceeb;
+}
+
+hr{
+	border-color:#149bdf;
+}
+
+.tr-bgclor{
+	background-color:#F5F5F5;
+}
+
+.foot{
+	position: absolute;
+	top:470px;
+}
+
+#page{
+	width:700px;
+}
+#page a{
+	float:right;
+	width:40px;
+	height:20px;
+	text-align:center;
+	line-height:20px;
+	display:block;
+	background-color:#87ceeb;
+	text-decoration: none;
+	outline: none;
+	margin:0 10px 0 0;
+	color:#FFFFFF;
+}
+
+#currPage{
+	color: #FF0000;
+}
+#totalCount{
+	color: #FF0000;
+}
+#totalPage{
+	color: #FF0000;
+}
+
+#linkMan {text-align:center; margin:0 auto;width: 100%;font-size: 13px; }
+#linkMan table { width:100%; line-height:30px; border-top:2px solid #87ceeb;}
+#linkMan table th { padding: 5px;border-top:1px solid #87ceeb; color:#149bdf; font-size: 14px; }
+#linkMan table td { padding: 5px 0; border-top:1px solid #87ceeb; }
+.body{ text-align:center;padding: 50px 0 50px 0;}
+.body h3{padding:100px; font-size:20px;color:#e1e1e1;}

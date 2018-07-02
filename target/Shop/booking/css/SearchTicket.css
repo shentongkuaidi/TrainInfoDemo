@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #fff8dc;
+}
+
+.container-fluid {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.clear {
+    clear: both;
+}
+
+/*ͷ����ʼ*/
+#top {
+    height: 52px;
+    padding: 20px 0 20px 0;
+    border-bottom: 5px solid #87ceeb;
+    margin: 0 0 10px 0;
+}
+
+#logo {
+    float: left;
+}
+
+#searchTicket {
+    background-color: #FFFFFF;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.lay-sear-yp {
+    height: 30px;
+    margin-top: 11px;
+}
+
+.lay-sear {
+    background: none repeat scroll 0 0 #EEF1F8;
+    border: 1px solid #298CCE;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 10px 0 10px;
+    padding: 8px 0 8px;
+    position: relative;
+}
+
+.clearfix {
+    display: block;
+}
+
+.inp-txt {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CFCDC7;
+    color: #999999;
+    height: 35px;
+    line-height: 18px;
+    padding: 5px 0 5px 5px;
+    width: 193px;
+}
+
+.btn122s {
+    width: 122px;
+    height: 30px;
+    line-height: 39px;
+    background: rgba(0, 0, 0, 0) url("../images/bg_btn.png") repeat-x scroll 0 0;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.btn12222s {
+    width: 66px;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(0, 0, 0, 0) url("../images/bg_btn.png") repeat-x scroll 0 0;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.btn12222s {
+    width: 66px;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(0, 0, 0, 0) url("../images/bg_btn.png") repeat-x scroll 0 0;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.t-list {
+    border: 1px solid #0000ff;
+    position: relative;
+}
+
+.mt10 {
+    margin: 30px 0 60px;
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    margin-top: 0;
+    background: url("../images/bg_tlisthd.png") top repeat-x;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.t-list th {
+    height: 52px;
+    width: 73px;
+    background: url(../images/line_tlisth.png) right center no-repeat;
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+}
+
+.t-list td {
+    border-right: 1px solid #b0cedd;
+    border-top: 1px solid #b0cedd;
+    color: #999;
+    height: 33px;
+    padding: 2px 0;
+    text-align: center;
+}
+
+div.dhx_modal_cover {
+    border: currentColor;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    _height: 0;
+    _overflow: hidden;
+    position: fixed;
+    filter: alpha(opacity=50);
+    opacity: .5;
+    z-index: 19999;
+    cursor: default;
+    zoom: 1;
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+.sear-sel-bd {
+    border: 1px solid #3391d0;
+    height: 30px;
+    font-size: 13px;
+    overflow: hidden;
+    margin: 10px 0 10px;
+    padding: 7px 0 7px;
+}
+
+
+.div-inline {
+    display: inline
+}
+
+td span{
+    margin-left: 12px;
+}
+
+
+

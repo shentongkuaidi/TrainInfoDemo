@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahut.dao.LinkManDao">
+
+    <select id="queryList" resultType="com.ahut.model.LinkMan">
+        select DISTINCT *
+        from t_linkMan
+        where uid=#{uid}
+        <if test="lname != null and lname != ''">
+            and lname like concat('%',#{lname},'%')
+        </if>
+        order by lid desc
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" parameterType="java.lang.String" resultType="int">
+        select count(*)
+        from t_linkMan
+        where uid=#{uid}
+        order by lid desc
+    </select>
+
+    <select id="queryObject" parameterType="int" resultType="com.ahut.model.LinkMan">
+        select *
+        from t_linkMan
+        where lid=#{lid}
+    </select>
+
+    <select id="queryObject2" parameterType="java.lang.String" resultType="com.ahut.model.LinkMan">
+        select *
+        from t_linkMan
+        where lname=#{lname}
+        and uid=#{uid}
+    </select>
+
+    <insert id="save" parameterType="com.ahut.model.LinkMan">
+        insert into t_linkMan
+        (
+        ltime,
+        lname,
+        lsex,
+        ltype,
+        lnumber,
+        uid
+        )
+        values
+        (
+        #{ltime},
+        #{lname},
+        #{lsex},
+        #{ltype},
+        #{lnumber},
+        #{uid}
+        )
+    </insert>
+
+
+    <delete id="delete">
+        delete from t_linkMan
+        where lnumber=#{lnumber}
+    </delete>
+
+    <delete id="deleteBatch">
+        delete from t_linkMan
+        where lid in
+        <foreach item="lid" collection="array" open="(" separator="," close=")">
+            #{lid}
+        </foreach>
+    </delete>
+
+    <delete id="clear">
+        delete from t_linkMan
+        where uid=#{uid}
+    </delete>
+
+    <select id="confirmLinkMan" resultType="com.ahut.model.LinkMan">
+        select *
+        from t_linkMan
+        where lnumber=#{lnumber}
+        and uid=#{uid}
+    </select>
+
+
+</mapper>

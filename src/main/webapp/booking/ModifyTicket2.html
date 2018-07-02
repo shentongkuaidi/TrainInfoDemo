@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改签—填写信息</title>
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/common/top.css" rel="stylesheet" type="text/css">
+    <link href="../css/common/foot.css" rel="stylesheet" type="text/css">
+    <link href="../css/common/Compatibility.css" rel="stylesheet" type="text/css">
+    <link href="css/OrderTicket.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/modifyTicket2.js"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+    <!--头部开始-->
+    <div id="top">
+        <div class="span2" id="logo">
+            <a><img src="../img/logo.jpg" style="width: 270px;height: 50px" border="0"></a>
+        </div>
+        <div class="span2" id="exit">
+            <a href="/exit">[退 出]</a>
+        </div>
+        <div class="span5">
+        </div>
+        <div class="span3" id="tel">
+            <img src="../img/tel.jpg" style="width: 170px;height: 50px"/>
+        </div>
+    </div>
+    <!--头部结束-->
+
+    <div class="clear"></div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <!--导航开始-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="nav-collapse collapse navbar-responsive-collapse" id="Navigation">
+                        <ul class="nav">
+                            <li>
+                                <a href="../index.html">客运首页</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">车票预定</a>
+                            </li>
+                            <li>
+                                <a href="TurnTicket1.html">接续换乘</a>
+                            </li>
+                            <li>
+                                <a href="../guide/guide.html">出行向导</a>
+                            </li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="divider-vertical">
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">个人中心<strong
+                                        class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="../userInfo/OrderContinue.html">未完成订单</a>
+                                    </li>
+                                    <li>
+                                        <a href="../userInfo/OrderFinish.html">已完成订单</a>
+                                    </li>
+                                    <li>
+                                        <a href="../userInfo/PersonalInfo.html">查看个人信息</a>
+                                    </li>
+                                    <li>
+                                        <a href="../userInfo/StudentIdentify.html">学生证认证</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="../linkMan/LinkManList.html">常用联系人</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--导航结束-->
+            <div id="orderTicket">
+                <table id="t1" class="t-1">
+                    <thead>
+                    <tr>
+                        <th>列车信息（以下余票信息仅供参考）</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <table id="t3" class="t-3">
+                    <thead>
+                    <tr>
+                        <th>您的选择结果如下：（提交订单前，请仔细检查）<span style="color: red">（改签）</span></th>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #3391d0;">
+                            <span>序号</span>&nbsp;
+                            <span class="orderSpan1">席别</span>
+                            <span class="orderSpan2">票种</span>
+                            <span class="orderSpan3">姓名</span>
+                            <span class="orderSpan3">二代身份证件号码</span>
+                            <span>手机号</span>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <table class="t-5">
+                    <tr>
+                        <td><input type="button" id="lastStep" value="上一步" class="btn btn-info"
+                                   style="margin: 0 100px 0 320px"/>
+                            <input type="button" id="confirmOrder" value="提交订单" class="btn btn-info"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="t-6">
+                    <tr>
+                        <td>
+                            <p><b style="color: red;font-size: 15px">温馨提示：</b></p>
+                            <p>1. 一张有效身份证件同一乘车日期同一车次只能购买一张车票，高铁动卧列车除外。</p>
+                            <p>2. 购票时可使用的有效身份证件包括：中华人民共和国居民身份证、港澳居民来往内地通行证、台湾居民来往大陆通行证和按规定可使用的有效护照。</p>
+                            <p>3. 购买儿童票时，乘车儿童有有效身份证件的，请填写本人有效身份证件信息。乘车儿童没有有效身份证件的，应使用同行成年人的有效身份证件信息。</p>
+                            <p>4. 购买学生票时，须在 <a href="../linkMan/LinkManList.html" style="color: blue">我的常用联系人</a>
+                                中登记乘车人的学生详细信息。学生票乘车时间限为每年的暑假6月1日至9月30日、寒假12月1日至3月31日。</p>
+                            <p>5. 购买残疾军人（伤残警察）优待票的，须在购票后、开车前办理换票手续方可进站乘车。<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;换票时，不符合规定的减价优待条件，没有有效"中华人民共和国残疾军人证"或"中华人民共和国伤残人民警察证"的，不予换票，所购车票按规定办理退票手续。
+                            </p>
+                            <p>6. 购买铁路乘意险的注册用户年龄须在18周岁以上，使用非二代居民身份证注册的用户如购买铁路乘意险，须在 <a
+                                    href="../userInfo/PersonalInfo.html" style="color: blue">我的火车网——个人信息</a> 如实填写信息。</p>
+                            <p>7. 父母为未成年子女投保，须在 <a href="../linkMan/LinkManList.html" style="color: blue">我的常用联系人</a>
+                                登记未成年子女的有效身份证件信息。</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="alert" style="display: none">
+    <table style="border: 1px solid #3391d0; width: 470px;height: 260px;">
+        <tr style="height: 30px">
+            <td></td>
+            <td><h4 style="color: #0e90d2">添加联系人</h4></td>
+            <td><a href="#" id="close">✖关闭</a></td>
+        </tr>
+        <tr style="height: 30px">
+            <td height="24" align="right"><label class="control-label" for="lname"><span
+                    class="Required">*</span>真实姓名：</label></td>
+            <td><input type="text" id="lname"><span class="help-inline" id="lnamedo"></span></td>
+            <td></td>
+        </tr>
+        <tr style="height: 30px">
+            <td height="24" align="right"><label class="control-label" for="lsex"><span
+                    class="Required">*</span>性别：</label></td>
+            <td>
+                <select id="lsex" style="font-size: 14px">
+                    <option value="您是先生还是女士？">您是先生还是女士？</option>
+                    <option value="先生">先生</option>
+                    <option value="女士">女士</option>
+                </select>
+                <span class="help-inline" id="lsexdo"></span>
+            </td>
+            <td></td>
+        </tr>
+        <tr style="height: 30px">
+            <td height="24" align="right"><label class="control-label" for="ltype"><span
+                    class="Required">*</span>身份：</label>
+            </td>
+            <td>
+                <select id="ltype" style="font-size: 14px">
+                    <option value="请选择您的身份">请选择您的身份</option>
+                    <option value="成人">成人</option>
+                    <option value="学生">学生</option>
+                </select>
+                <span class="help-inline" id="ltypedo"></span>
+            </td>
+            <td></td>
+        </tr>
+        <tr style="height: 30px">
+            <td height="24" align="right"><label class="control-label" for="lnumber"><span class="Required">*</span>身份证号码：</label>
+            </td>
+            <td><input type="text" id="lnumber"><span class="help-inline" id="lnumberdo"></span></td>
+            <td></td>
+        </tr>
+        <tr style="height: 30px">
+            <td></td>
+            <td>
+                <button class="btn btn-info" type="button" id="save">✔ 保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-info" type="button" id="cancel">↩ 取消,返回</button>
+                <span class="help-inline2" id="msg"></span>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<div id="foot">
+    <a href="#">关于我们 |</a>
+    <a href="#">友情链接 |</a>
+    <a href="../user/UserAgreement.html" target="_blank">用户协议 |</a>
+    <a href="#">手机客户端 |</a>
+    <a href="#">加入收藏</a>
+    <p><span>客服热线：18395588030</span><span>邮箱：993047454@qq.com</span><span>地址：安徽省马鞍山市安徽工业大学</span></p>
+    <p>Copyright @ 2018 www.ticketOnline.com All Rights Reserved.</p>
+
+</div>
+
+</body>
+</html>

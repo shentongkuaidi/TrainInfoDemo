@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>用户登录</title>
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/common/top.css" rel="stylesheet" type="text/css">
+    <link href="../css/common/foot.css" rel="stylesheet" type="text/css"/>
+    <link href="css/Login.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <!--头部开始-->
+    <div id="top">
+        <div class="span2" id="logo">
+            <a><img src="../img/logo.jpg" style="width: 270px;height: 50px" border="0"/></a>
+        </div>
+        <div class="span5">
+        </div>
+        <div class="span3" id="tel">
+            <img src="../img/tel.jpg" style="width: 170px;height: 50px"/>
+        </div>
+    </div>
+    <!--头部结束-->
+
+    <div class="row-fluid">
+        <div class="span12">
+
+            <!--导航开始-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="nav-collapse collapse navbar-responsive-collapse" id="Navigation">
+                        <ul class="nav">
+                            <li>
+                                <a href="../index.html">客运首页</a>
+                            </li>
+                            <li>
+                                <a href="../booking/SearchTicket.html">车票预定</a>
+                            </li>
+                            <li>
+                                <a href="../booking/TurnTicket1.html">接续换乘</a>
+                            </li>
+                            <li>
+                                <a href="../guide/guide.html">出行向导</a>
+                            </li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="active">
+                                <a href="#">登录</a>
+                            </li>
+                            <li>
+                                <a href="Register.html">注册</a>
+                            </li>
+                            <li class="divider-vertical">
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">个人中心<strong
+                                        class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="../userInfo/OrderContinue.html">未完成订单</a>
+                                    </li>
+                                    <li>
+                                        <a href="../userInfo/OrderFinish.html">已完成订单</a>
+                                    </li>
+                                    <li>
+                                        <a href="../userInfo/PersonalInfo.html">查看个人信息</a>
+                                    </li>
+                                    <li>
+                                        <a href="../userInfo/StudentIdentify.html">学生证认证</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="../linkMan/LinkManList.html">常用联系人</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--导航结束-->
+
+            <!--登录内容开始-->
+            <div id="login">
+                <table>
+                    <tr style="height: 50px">
+                        <td colspan="3"><h4>用户登录</h4></td>
+                        <td><span class="help-inline2">温馨提示</span></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="loginName"><span
+                                class="Required">*</span>用户名：</label></td>
+                        <td><input type="text" id="loginName" placeholder="手机号/昵称"></td>
+                        <td><span class="help-inline" id="loginNamedo"></span></td>
+                        <td><span class="help-inline2">1、huoche.com网站自3月16日起启用字符验证码。<font
+                                color="red">(区分大小写)</font></span></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="loginPassword"><span
+                                class="Required">*</span>登陆密码：</label>
+                        </td>
+                        <td><input type="password" id="loginPassword"></td>
+                        <td><span class="help-inline" id="loginPassworddo"></span></td>
+                        <td><span class="help-inline2">2、huoche.com网站每日06:00~23:00提供服务。</span></td>
+                    </tr>
+                    <tr style="height: 50px">
+                        <td height="24" align="right"><label class="control-label" for="loginCode"><span
+                                class="Required">*</span>验证码：</label>
+                        </td>
+                        <td><input type="text" id="loginCode" style="width: 80px">
+                            <a href="#" id="changeVerifyCode" class="help-inline3" style="text-align: center;outline: none;text-decoration: none">
+                                <img src="/getVerifyCode" style="width: 80px;height: 30px;border: 0" id="verifyCodeImage"
+                                     class="help-inline3">看不清</a>
+                        </td>
+                        <td><span class="help-inline3" id="loginCodedo"></span></td>
+                        <td><span class="help-inline2">3、在huoche.com购票、改签和退票须不晚于开车前30分钟；</span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td valign="middle" colspan="2">
+                            <button class="btn btn-info" type="button" id="loginButton">☞&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                            <a href="GetPassword1.html" class="forgetpwd">忘记密码</a>
+                            <a href="Register.html">免费注册</a>
+                        </td>
+                        <td><span class="help-inline2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;办理“变更到站”业务时，请不晚于开车前48小时。</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--登录内容结束-->
+
+    </div>
+</div>
+
+<!--foot开始-->
+<div id="foot">
+    <a href="#">关于我们 |</a>
+    <a href="#">友情链接 |</a>
+    <a href="UserAgreement.html" target="_blank">用户协议 |</a>
+    <a href="#">手机客户端 |</a>
+    <a href="#">加入收藏</a>
+    <p><span>客服热线：18395588030</span><span>邮箱：993047454@qq.com</span><span>地址：安徽省马鞍山市安徽工业大学</span></p>
+    <p>Copyright @ 2018 www.ticketOnline.com All Rights Reserved.</p>
+
+</div>
+<!--foot结束-->
+
+</body>
+</html>

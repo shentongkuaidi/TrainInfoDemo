@@ -1,0 +1,69 @@
+*{margin:0;padding:0;list-style-type:none;}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#fff8dc;
+}
+.container-fluid{
+	width:960px;
+	margin:0 auto;
+}
+.clear{
+	clear:both;
+}
+
+
+/*ͷ����ʼ*/
+#top{
+	height:50px;
+	padding:20px 0 20px 0;
+	border-bottom:5px solid #87ceeb;
+	margin:0 0 10px 0;
+}
+#logo{
+	float:left;
+}
+
+/*��¼��ʼ*/
+
+#login{
+	padding:20px 0 50px 100px;
+	background-color:#FFFFFF;
+}
+
+
+h4{
+	color:#87ceeb;
+}
+.Required{
+	color:red;
+	font-size: 20px;
+	margin:0 2px 0 0;
+}
+.help-inline{
+	color:green;
+	margin:0 0 10px 10px;
+}
+.help-inline2{
+	color:#149bdf;
+	font-size: 15px;
+	padding: 20px 0 30px 100px;
+}
+.help-inline3{
+	font-size: 13px;
+	margin:0 0 10px 0;
+}
+#inputInfo{
+	font-size:11px;
+	color:#999999;
+}
+.control-label{
+	font-size:13px;
+	margin:0 10px 10px 0;
+}
+.ckbox{
+	width:20px;
+}
+.forgetpwd{
+	margin:0 10px 20px 11px;
+}

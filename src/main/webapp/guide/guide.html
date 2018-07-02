@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>出行向导</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TicketOnline">
+    <meta name="author" content="ST">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../css/common/top.css" rel="stylesheet" type="text/css">
+    <link href="../css/common/foot.css" rel="stylesheet" type="text/css">
+    <link href="css/GroupBuy.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/guide.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <!--头部开始-->
+    <div id="top">
+        <div class="span2" id="logo">
+            <a><img src="../img/logo.jpg" style="width: 270px;height: 50px" border="0"/></a>
+        </div>
+        <div class="span2" id="exit">
+            <a href="/exit">[退 出]</a>
+        </div>
+        <div class="span5">
+        </div>
+        <div class="span3" id="tel">
+            <img src="../img/tel.jpg" style="width: 170px;height: 50px;"/>
+        </div>
+    </div>
+    <!--头部结束-->
+
+    <div class="clear"></div>
+
+    <div class="span12">
+        <!--导航开始-->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="nav-collapse collapse navbar-responsive-collapse" id="Navigation">
+                    <ul class="nav">
+                        <li>
+                            <a href="../index.html">客运首页</a>
+                        </li>
+                        <li>
+                            <a href="../booking/SearchTicket.html">车票预定</a>
+                        </li>
+                        <li>
+                            <a href="../booking/TurnTicket1.html">接续换乘</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">出行向导</a>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li id="login">
+                            <a href="../user/Login.html">登录</a>
+                        </li>
+                        <li id="register">
+                            <a href="../user/Register.html">注册</a>
+                        </li>
+                        <li id="user">
+                            <a id="uid"></a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">个人中心<strong
+                                    class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../userInfo/OrderContinue.html">未完成订单</a>
+                                </li>
+                                <li>
+                                    <a href="../userInfo/OrderFinish.html">已完成订单</a>
+                                </li>
+                                <li>
+                                    <a href="../userInfo/PersonalInfo.html">查看个人信息</a>
+                                </li>
+                                <li>
+                                    <a href="../userInfo/StudentIdentify.html">学生证认证</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="../linkMan/LinkManList.html">常用联系人</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!--导航结束-->
+        <!--轮换图开始-->
+        <div class="carousel slide" id="carousel-325862">
+            <ol class="carousel-indicators">
+                <li class="active" data-slide-to="0" data-target="#carousel-325862">
+                </li>
+                <li data-slide-to="1" data-target="#carousel-325862">
+                </li>
+                <li data-slide-to="2" data-target="#carousel-325862">
+                </li>
+            </ol>
+            <div class="carousel-inner">
+                <!--图1-->
+                <div class="item active">
+                    <a href="#"><img src="../img/focus/focus01.jpg" border="0"></a>
+                    <div class="carousel-caption">
+                        <h4>
+                            图1
+                        </h4>
+                    </div>
+                </div>
+
+                <!--图2-->
+                <div class="item">
+                    <a href="#"><img src="../img/focus/focus02.jpg" border="0"></a>
+                    <div class="carousel-caption">
+                        <h4>
+                            图2
+                        </h4>
+                    </div>
+                </div>
+
+                <!--图3-->
+                <div class="item">
+                    <a href="#"><img src="../img/focus/focus03.jpg" border="0"></a>
+                    <div class="carousel-caption">
+                        <h4>
+                            图3
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <a data-slide="prev" href="#carousel-325862" class="left carousel-control">‹</a>
+            <a data-slide="next" href="#carousel-325862" class="right carousel-control">›</a>
+        </div>
+        <!--轮换图结束-->
+    </div>
+
+    <!--使用须知-->
+    <div class="span12" id="1">
+        <div class="TodayDeal-title">
+            <h4>使用须知</h4>
+            <a href="#">更多>></a>
+        </div>
+
+        <div class="groupbuy">
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train1.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>注册新用户</h4>
+                </div>
+            </div>
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train2.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>网上购票流程</h4>
+                </div>
+            </div>
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train3.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>身份核验</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--使用须知结束-->
+
+    <!--相关规章-->
+    <div class="span12" id="2">
+        <div class="TodayDeal-title">
+            <h4>相关规章</h4>
+        </div>
+
+        <div class="groupbuy">
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train4.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>铁路互联网购票须知</h4>
+                </div>
+            </div>
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train5.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>铁路互联网购票身份核验</h4>
+                </div>
+            </div>
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train6.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>铁路旅客运输办理细则</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--相关规章结束-->
+
+    <!--铁路保险开始-->
+    <div class="span12" id="3">
+        <div class="TodayDeal-title">
+            <h4>铁路保险>>旅客人身意外伤害保险</h4>
+            <a href="#">更多>></a>
+        </div>
+
+        <div class="groupbuy">
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train7.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>（A款）</h4>
+                </div>
+            </div>
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train8.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>（指定行程）投保须知</h4>
+                </div>
+            </div>
+            <div class="span4">
+                <a href="#">
+                    <img src="images/train9.jpg" width="300" height="200" border="0"/>
+                </a>
+                <div class="readDetail">
+                    <h4>指定行程（常见问题）</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--铁路保险结束-->
+
+</div>
+<!--container结束-->
+
+<div class="clear"></div>
+
+<!--foot-->
+<div id="foot">
+    <a href="#">关于我们 |</a>
+    <a href="#">友情链接 |</a>
+    <a href="../user/UserAgreement.html" target="_blank">用户协议 |</a>
+    <a href="#">手机客户端 |</a>
+    <a href="#">加入收藏</a>
+    <p><span>客服热线：18395588030</span><span>邮箱：993047454@qq.com</span><span>地址：安徽省马鞍山市安徽工业大学</span></p>
+    <p>Copyright @ 2018 www.ticketOnline.com All Rights Reserved.</p>
+
+</div>
+<!--foot结束-->
+
+</body>
+</html>

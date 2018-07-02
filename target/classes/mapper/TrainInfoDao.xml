@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahut.dao.TrainInfoDao">
+
+    <resultMap id="trainInfoMap" type="com.ahut.dto.TrainInfo">
+        <result property="tid" column="TID"/>
+        <result property="sday" column="SDAY"/>
+        <result property="origin" column="ORIGIN"/>
+        <result property="destination" column="DESTINATION"/>
+        <result property="startTime" column="STARTTIME"/>
+        <result property="endTime" column="ENDTIME"/>
+        <result property="costTime" column="COSTTIME"/>
+        <association property="list" column="{tid=TID,sday=SDAY,origin=ORIGIN,destination=DESTINATION}" select="getCtype"/>
+    </resultMap>
+
+    <select id="getCtype" resultType="com.ahut.dto.CType">
+        SELECT c.ctype,count(b.sid) as ccount
+          from( SELECT *
+                 from( select DISTINCT s.tid,s.cid,s.sid
+                        from t_seat s
+                        left join t_carriage c on c.tid=s.tid and c.cid=s.cid
+                        WHERE s.tid=#{tid}
+                      ) as a
+                 where not EXISTS( select DISTINCT ot.tid,od.cid,od.sid
+                                     FROM t_ordertable ot
+                                     left join t_orderdetail od on od.otid=ot.otid
+                                     where ot.otendtime &gt;= ( SELECT rs.rsdeparturetime
+                                                                   from t_routestation rs
+                                                                   LEFT JOIN t_station s on s.sid= rs.sid
+                                                                   WHERE s.sname = #{origin} and rs.tid=#{tid})
+                                     and ot.otstarttime &lt;= ( SELECT rs.rsarrivaltime
+                                                               from t_routestation rs
+                                                               LEFT JOIN t_station s on s.sid= rs.sid
+                                                               WHERE s.sname = #{destination} and rs.tid=#{tid})
+                                     and ot.otstartday=#{sday}
+                                     and ot.otstatus in('0','1','3')
+                                     and a.cid=od.cid
+                                     and a.sid=od.sid)) as b
+          LEFT JOIN t_carriage c on c.cid= b.cid
+          where c.tid=#{tid}
+          GROUP BY c.cid
+    </select>
+
+    <select id="queryTrainInfo" resultMap="trainInfoMap">
+        select DISTINCT c.tid as TID,c.sday as SDAY,c.origin as ORIGIN,c.destination as DESTINATION,c.rsdeparturetime AS STARTTIME,c.rsarrivaltime AS ENDTIME,
+               time_format(timediff(c.rsarrivaltime,c.rsdeparturetime),'%Hh%im') as COSTTIME
+        from (select DISTINCT a.tid,s.sday,a.sname as origin,b.sname as destination,a.rsdeparturetime,b.rsarrivaltime
+               from (select rs.tid,rs.rsdeparturetime,s.sname
+                      from t_routeStation rs
+                      left join t_station s on s.sid=rs.sid
+                      where s.sname like concat(#{origin},'%')
+                     ) as a
+               left join
+                    (select rs.tid,rs.rsarrivaltime,s.sname
+                     from t_routeStation rs
+                     left join t_station s on s.sid=rs.sid
+                     where s.sname like concat(#{destination},'%')
+                    ) as b on b.tid=a.tid
+               left join t_seat s on s.tid=a.tid
+               where a.sname != ''
+               and b.sname != ''
+               and a.rsdeparturetime &lt; b.rsarrivaltime
+               and rsdeparturetime &gt; (select  DATE_ADD(CURTIME(),INTERVAL 30 MINUTE))
+               and s.sday=#{sday}
+              ) as c
+        left join t_seat s on s.tid=c.tid
+        <where>
+            <if test="tid != ''">
+                or c.tid like concat(#{tid},'%')
+            </if>
+            <if test="tid1 != ''">
+                or c.tid like concat(#{tid1},'%')
+            </if>
+            <if test="tid2 != ''">
+                or c.tid like concat(#{tid2},'%')
+            </if>
+            <if test="tid3 != ''">
+                or c.tid like concat(#{tid3},'%')
+            </if>
+            <if test="tid4 != ''">
+                or c.tid like concat(#{tid4},'%')
+            </if>
+            <if test="tid5 != ''">
+                or c.tid like concat(#{tid5},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryTrainInfoNotToday" resultMap="trainInfoMap">
+        select DISTINCT c.tid as TID,c.sday as SDAY,c.origin as ORIGIN,c.destination as DESTINATION,c.rsdeparturetime AS STARTTIME,c.rsarrivaltime AS ENDTIME,
+                time_format(timediff(c.rsarrivaltime,c.rsdeparturetime),'%Hh%im') as COSTTIME
+          from ( select DISTINCT a.tid,s.sday,a.sname as origin,b.sname as destination,a.rsdeparturetime,b.rsarrivaltime
+                   from ( select rs.tid,rs.rsdeparturetime,s.sname
+                          from t_routeStation rs
+                          left join t_station s on s.sid=rs.sid
+                          where s.sname like concat(#{origin},'%')
+                         ) as a
+                   left join
+                        ( select rs.tid,rs.rsarrivaltime,s.sname
+                          from t_routeStation rs
+                          left join t_station s on s.sid=rs.sid
+                          where s.sname like concat(#{destination},'%')
+                        ) as b on b.tid=a.tid
+                   left join t_seat s on s.tid=a.tid
+                   where a.sname != ''
+                   and b.sname != ''
+                   and a.rsdeparturetime &lt; b.rsarrivaltime
+                   and s.sday=#{sday}
+                ) as c
+         left join t_seat s on s.tid=c.tid
+        <where>
+            <if test="tid != ''">
+                or c.tid like concat(#{tid},'%')
+            </if>
+            <if test="tid1 != ''">
+                or c.tid like concat(#{tid1},'%')
+            </if>
+            <if test="tid2 != ''">
+                or c.tid like concat(#{tid2},'%')
+            </if>
+            <if test="tid3 != ''">
+                or c.tid like concat(#{tid3},'%')
+            </if>
+            <if test="tid4 != ''">
+                or c.tid like concat(#{tid4},'%')
+            </if>
+            <if test="tid5 != ''">
+                or c.tid like concat(#{tid5},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryTicketInfo" resultType="com.ahut.dto.TicketInfo">
+        SELECT b.*,c.price
+        from ( SELECT *
+               from
+               ( select s.tid,c.ctype,s.cid,s.sid
+                 from t_seat s
+                 left join t_carriage c on c.tid=s.tid and c.cid=s.cid
+                 WHERE s.tid=#{tid}
+               ) as a
+        where not EXISTS
+              ( select ot.tid,od.ctype,od.cid,od.sid
+                FROM t_ordertable ot
+                left join t_orderdetail od on od.otid=ot.otid
+                where ot.otendtime &gt;= ( SELECT rs.rsdeparturetime
+                                              from t_routestation rs
+                                              LEFT JOIN t_station s on s.sid= rs.sid
+                                              WHERE s.sname=#{origin} and rs.tid=#{tid})
+                and ot.otstarttime &lt;= ( SELECT rs.rsarrivaltime
+                                          from t_routestation rs
+                                          LEFT JOIN t_station s on s.sid= rs.sid
+                                          WHERE s.sname=#{destination} and rs.tid=#{tid})
+                and ot.otstartday=#{sday}
+                and ot.otstatus in('0','1','3')
+                and a.cid=od.cid
+                and a.sid=od.sid)) as b
+        LEFT JOIN ( SELECT DISTINCT t1.tid,t1.ctype,(t2.price-t1.price) as price
+                     from t_ticketprice t1,t_ticketprice t2
+                     where t1.sid=(SELECT sid from t_station where sname=#{origin})
+                     and t2.sid=(SELECT sid from t_station where sname=#{destination})
+                     and t1.ctype=t2.ctype
+                     and t1.tid=#{tid}
+                     and t2.tid=#{tid}) as c on c.ctype=b.ctype
+    </select>
+
+    <select id="queryTurnInfo1" resultType="com.ahut.dto.TurnInfo">
+        select rowNum,a.tid as firstTid,b.tid as lastTid,a.sid as midSid
+        from (select(@rowNum:=@rowNum+1) as rowNum,c.*
+                from ( select rs.tid,rs.sid
+                         from t_routestation rs
+                        where rs.tid in (SELECT tid
+                                            from (select tid
+                                                    from t_routestation rs
+                                               LEFT JOIN t_station st on st.sid=rs.sid
+                                                   where st.sname like concat(#{origin},'%')) as origin
+                                           where origin.tid not in(select tid
+                                                                      from t_routestation rs
+                                                                 LEFT JOIN t_station st on st.sid=rs.sid
+                                                                      where st.sname like concat(#{destination},'%'))
+                                        )
+                    order BY rs.rsarrivaltime) as c,(select (@rowNum :=0)) as rn
+             ) as a
+        LEFT JOIN (select rs.tid,rs.sid
+                     from t_routestation rs
+                    where rs.tid in (SELECT tid
+                                        from (select tid
+                                                from t_routestation rs
+                                           LEFT JOIN t_station st on st.sid=rs.sid
+                                               where st.sname like concat(#{destination},'%')) as destination
+                                       where destination.tid not in(select tid
+                                                                       from t_routestation rs
+                                                                  LEFT JOIN t_station st on st.sid=rs.sid
+                                                                       where st.sname like concat(#{origin},'%'))
+                                     )
+                    order by rs.tid,rs.rsarrivaltime) as b on b.sid=a.sid
+        where a.tid!=b.tid
+        order by rowNum
+    </select>
+
+    <select id="queryTurnInfo2" resultType="int">
+        SELECT count(1)
+        from (select rs.rsdeparturetime from t_routestation rs LEFT JOIN t_station st on st.sid=rs.sid where tid=#{firstTid} and sname like concat(#{origin},'%')) as a,
+              (select sid,rs.rsarrivaltime from t_routestation rs where tid=#{firstTid} and sid=#{midSid}) as b,
+              (select rs.rsdeparturetime from t_routestation rs where tid=#{lastTid} and sid=#{midSid}) as c,
+              (select rs.rsarrivaltime from t_routestation rs LEFT JOIN t_station st on st.sid=rs.sid where tid=#{lastTid} and sname like concat(#{destination},'%')) as d
+        where b.sid=#{midSid}
+        and a.rsdeparturetime &lt; b.rsarrivaltime
+        and c.rsdeparturetime &lt; d.rsarrivaltime
+        and b.rsarrivaltime &lt;= DATE_SUB(c.rsdeparturetime,INTERVAL 30 MINUTE)
+    </select>
+
+    <select id="getStationName" resultType="java.lang.String">
+    select sname from t_station where sid=#{sid}
+    </select>
+    <select id="getStationId" resultType="int">
+        select sid from t_station where sname=#{sname}
+    </select>
+</mapper>

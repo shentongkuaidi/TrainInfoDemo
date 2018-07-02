@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahut.dao.TicketDao">
+
+    <insert id="saveTemporaryOrder" parameterType="com.ahut.model.TemporaryOrder">
+        insert into t_temporaryOrder
+        (
+        id,
+        endtime,
+        uid
+        )
+        values
+        (
+        #{id},
+        #{endtime},
+        #{uid}
+        )
+    </insert>
+
+    <insert id="saveOrderTable" parameterType="com.ahut.model.OrderTable">
+        insert into t_orderTable
+        (
+        otid,
+        ottime,
+        tid,
+        otorigin,
+        otmidstation,
+        otdestination,
+        otstartday,
+        otstarttime,
+        otendtime,
+        otnumber,
+        otprice,
+        uid,
+        otstatus
+        )
+        values
+        (
+        #{otid},
+        #{ottime},
+        #{tid},
+        #{otorigin},
+        #{otmidstation},
+        #{otdestination},
+        #{otstartday},
+        #{otstarttime},
+        #{otendtime},
+        #{otnumber},
+        #{otprice},
+        #{uid},
+        #{otstatus}
+        )
+    </insert>
+
+    <insert id="saveOrderDetail" parameterType="java.util.List">
+        insert into t_orderDetail
+        (
+        lname,
+        origin,
+        destination,
+        starttime,
+        endtime,
+        ltype,
+        tid,
+        ctype,
+        cid,
+        sid,
+        odprice,
+        otid
+        )
+        values
+        <foreach collection="list" item="ods" index="index" separator=",">
+            (
+            #{ods.lname},
+            #{ods.origin},
+            #{ods.destination},
+            #{ods.starttime},
+            #{ods.endtime},
+            #{ods.ltype},
+            #{ods.tid},
+            #{ods.ctype},
+            #{ods.cid},
+            #{ods.sid},
+            #{ods.odprice},
+            #{ods.otid}
+            )
+        </foreach>
+    </insert>
+
+    <resultMap id="orderInfoMap" type="com.ahut.dto.Order">
+        <result property="otid" column="OTID"/>
+        <result property="tid" column="TID"/>
+        <result property="ottime" column="OTTIME"/>
+        <result property="otorigin" column="OTORIGIN"/>
+        <result property="otmidstation" column="OTMIDSTATION"/>
+        <result property="otdestination" column="OTDESTINATION"/>
+        <result property="otstartday" column="OTSTARTDAY"/>
+        <result property="otstarttime" column="OTSTARTTIME"/>
+        <result property="otendtime" column="OTENDTIME"/>
+        <result property="otnumber" column="OTNUMBER"/>
+        <result property="otprice" column="OTPRICE"/>
+        <result property="sname" column="SNAME"/>
+        <association property="list" column="OTID" select="queryOrderDetailList"/>
+    </resultMap>
+
+    <select id="queryOrderDetailList" resultType="com.ahut.model.OrderDetail">
+        SELECT *
+        FROM t_orderDetail
+        WHERE otid= #{otid}
+        order by lname
+    </select>
+
+    <select id="queryModifyOrder" resultMap="orderInfoMap">
+        select DISTINCT ot.otid as OTID,ot.tid as TID,ot.ottime as OTTIME,ot.otorigin as OTORIGIN,ot.otmidstation as OTMIDSTATION,
+                        ot.otdestination as OTDESTINATION,ot.otstartday as OTSTARTDAY,ot.otstarttime as OTSTARTTIME,
+                        ot.otendtime as OTENDTIME,ot.otnumber as OTNUMBER,ot.otprice as OTPRICE,s.sname as SNAME
+        from t_orderTable ot
+        left join t_status s on s.sid=ot.otstatus
+        where ot.otid = #{otid}
+    </select>
+
+    <select id="queryOrder" resultMap="orderInfoMap">
+        select DISTINCT ot.otid as OTID,ot.tid as TID,ot.ottime as OTTIME,ot.otorigin as OTORIGIN,ot.otmidstation as OTMIDSTATION,
+                ot.otdestination as OTDESTINATION,ot.otstartday as OTSTARTDAY,ot.otstarttime as OTSTARTTIME,
+                ot.otendtime as OTENDTIME,ot.otnumber as OTNUMBER,ot.otprice as OTPRICE,s.sname as SNAME
+        from t_orderTable ot
+        left join t_status s on s.sid=ot.otstatus
+        left join t_orderDetail od on od.otid=ot.otid
+        where uid=#{uid}
+        and otstatus in ('1','3')
+        <if test="future == '+1'">
+            and (
+                 ot.otstartday &gt; (select curdate())
+                 or
+                 ot.otstartday = (select curdate())
+                 and
+                 ot.otstarttime &gt; (select curtime())
+                )
+        </if>
+        <if test="history == '-1'">
+            and (
+                 ot.otstartday &lt; (select curdate())
+                 or
+                 ot.otstartday = (select curdate())
+                 and
+                 ot.otstarttime &lt; (select curtime())
+                )
+        </if>
+        <if test="startDay1 != null and endDay1 != null and status == '1'.toString()">
+            and ot.ottime &gt;=#{startDay1}
+            and ot.ottime &lt;=#{endDay1}
+        </if>
+        <if test="startDay1 != null and endDay1 != null and status == '2'.toString()">
+            and ot.otstartday &gt;=#{startDay1}
+            and ot.otstartday &lt;=#{endDay1}
+        </if>
+        <if test="startDay2 != null and endDay2 != null">
+            and ot.otstartday &gt;=#{startDay2}
+            and ot.otstartday &lt;=#{endDay2}
+        </if>
+        <if test="tidOrName1 != '' and tidOrName1 != null">
+            and (
+                 ot.tid=#{tidOrName1}
+                 or
+                 od.lname=#{tidOrName1}
+                )
+        </if>
+        <if test="tidOrName2 != '' and tidOrName2 != null">
+            and (
+                 ot.tid=#{tidOrName2}
+                 or
+                 od.lname=#{tidOrName2}
+            )
+        </if>
+        <if test="method == '1'.toString()">
+            and (
+            ot.otstartday &gt; (select curdate())
+            or
+            ot.otstartday = (select curdate())
+            and
+            ot.otstarttime &gt; (select  DATE_ADD(CURTIME(),INTERVAL 60 MINUTE))
+            )
+            and otstatus != '3'
+        </if>
+        <if test="method == '2'.toString()">
+            and (
+            ot.otstartday &gt; (select curdate())
+            or
+            ot.otstartday = (select curdate())
+            and
+            ot.otstarttime &gt; (select  DATE_ADD(CURTIME(),INTERVAL 120 MINUTE))
+            )
+        </if>
+    </select>
+
+    <select id="continueOrder" resultMap="orderInfoMap">
+        select DISTINCT ot.otid as OTID,ot.tid as TID,ot.ottime as OTTIME,ot.otorigin as OTORIGIN,ot.otmidstation as OTMIDSTATION,
+                ot.otdestination as OTDESTINATION,ot.otstartday as OTSTARTDAY,ot.otstarttime as OTSTARTTIME,
+                ot.otendtime as OTENDTIME,ot.otnumber as OTNUMBER,ot.otprice as OTPRICE,s.sname as SNAME
+        from t_orderTable ot
+        left join t_status s on s.sid=ot.otstatus
+        where uid=#{uid}
+        and otstatus=#{otstatus}
+    </select>
+
+    <select id="queryTemporaryOrder" resultType="com.ahut.model.TemporaryOrder">
+        select *
+        from t_temporaryOrder
+        where endtime &lt; (select curtime())
+    </select>
+
+    <delete id="deleteTemporaryOrder">
+        delete
+        from t_temporaryOrder
+        <where>
+            <if test="id != null">
+                and id=#{id}
+            </if>
+            <if test="uid !=null">
+                and uid=#{uid}
+            </if>
+        </where>
+    </delete>
+
+    <update id="updateOrderStatus" parameterType="java.lang.String">
+        update t_orderTable
+        set otstatus=#{otstatus}
+        where otid=#{otid}
+    </update>
+
+    <select id="cancelOrderCount" resultType="int">
+        select count(*)
+        from t_orderTable
+        where uid=#{uid}
+        and otstatus='2'
+        and ottime = (select curdate())
+    </select>
+
+    <update id="cancelOrder" parameterType="java.lang.String">
+        update t_orderTable
+        set otstatus='2'
+        where otstatus='0'
+        and uid=#{uid}
+    </update>
+
+    <select id="queryTemporaryOrderEndTime" resultType="java.lang.String">
+        select endtime
+        from t_temporaryOrder
+        where uid=#{uid}
+    </select>
+
+    <delete id="deleteOrderDetail">
+        delete
+        from t_orderDetail
+        where otid = #{otid}
+        and lname in
+        <foreach item="lname" collection="lnames" open="(" separator="," close=")">
+            #{lname}
+        </foreach>
+    </delete>
+
+    <update id="updateOrderTable" parameterType="java.lang.String">
+        update t_orderTable
+        set otnumber = (SELECT count(DISTINCT lname) from t_orderDetail where otid=#{otid}),
+            otprice = (SELECT SUM(odprice) from t_orderDetail where otid=#{otid})
+        WHERE otid=#{otid}
+    </update>
+
+    <delete id="deleteOrderTable">
+        delete
+        from t_orderTable
+        where otid = #{otid}
+    </delete>
+
+    <update id="payOrder" parameterType="java.lang.String">
+        update t_orderTable
+        set otstatus = #{otstatus}
+        where otstatus='0'
+        and uid = #{uid}
+    </update>
+</mapper>
